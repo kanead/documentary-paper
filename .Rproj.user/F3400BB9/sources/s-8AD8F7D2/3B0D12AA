@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1552328413350.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "3B0D12AA",
+    "lastKnownWriteTime" : 1552317029,
+    "last_content_update" : 1552317029,
+    "path" : "~/Science/Manuscripts/Documentary analysis/documentary-paper/code/anomaly_detection_charities.R",
+    "project_path" : "code/anomaly_detection_charities.R",
+    "properties" : {
+        "cursorPosition" : "5,0",
+        "scrollLine" : "4"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
