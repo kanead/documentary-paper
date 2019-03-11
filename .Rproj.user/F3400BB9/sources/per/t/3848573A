@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1552326977599.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2681205925",
+    "id" : "3848573A",
+    "lastKnownWriteTime" : 1552324935,
+    "last_content_update" : 1552324935,
+    "path" : "~/Science/Manuscripts/Documentary analysis/documentary-paper/code/causal_impact.R",
+    "project_path" : "code/causal_impact.R",
+    "properties" : {
+        "cursorPosition" : "0,0",
+        "scrollLine" : "0"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
