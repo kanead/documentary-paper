@@ -9,6 +9,11 @@ library(data.table)
 library(AnomalyDetection)
 
 # load in the data which is a vector of species names that have a dedicated awareness day
+
+# the dates represent the species awareness days in 2016 and 2017
+# the start and end colums create a buffer around these dates so 
+# we don't overlap a species awareness day in our calculation of a baseline
+
 data<-read.csv("data/species_days.csv", header = TRUE, sep = ",")
 head(data)
 length(data$species)
@@ -40,7 +45,7 @@ length(outputBaseline)
 head(outputBaseline)
 tail(outputBaseline)
 
-# combine output 
+# combine output so that we have data on mobile and desktop access
 dataTableOutput<-setDT(output)[, .(sumy=sum(views)), by = .(article,date)]
 combinedOutput<-data.frame(dataTableOutput)
 names(combinedOutput)[names(combinedOutput) == 'sumy'] <- 'views'
@@ -59,8 +64,7 @@ head(combinedOutputBaseline)
 # get the median hits over the course of the baseline time period by species (article)
 tapply(dataTableOutputBaseline$sumy, dataTableOutputBaseline$article, FUN = median)
 
-# we want to compare the data with a baseline, because the awareness days vary with year we want to apply a date buffer around the awareness day per species 
-# and calculate its media value
+# we don't want to include the species awareness dates in calculating the baseline (median value) so we have a buffer after the date in year 1 and before the next one in year 2. The median value is calculated on the dates that fall in between this buffer
 names(data)[names(data) == 'species'] <- 'article'
 dataTableOutputBaseline<-merge(dataTableOutputBaseline, data[,c(1,5,6)], by="article")
 head(dataTableOutputBaseline)
@@ -399,3 +403,16 @@ print(c("Whale shark",max(c(
   newdata1$views[newdata1$date=="2016-08-31"]
 ))))
 
+# the differences between the species day value - the median value is compared with 
+# the data for Planet Earth 2 species day value - their median value i.e. the 'diff'
+# column in the master spreadsheet 
+comparison_data <- read.csv("data/species_awareness_Vs_PE2_wikipedia.csv",header = T)
+tapply(comparison_data$value,comparison_data$group,mean)
+tapply(comparison_data$value,comparison_data$group,median)
+tapply(comparison_data$value,comparison_data$group,max)
+
+library(ggplot2)
+comparison_data %>% group_by(group) %>%
+ggplot(aes(x=value,fill=factor(group,labels=c("Species awareness day", "Planet Earth 2")))) + xlab("difference between baseline and day")+ 
+  geom_density(alpha=0.5) +
+  labs(fill="")
