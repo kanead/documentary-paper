@@ -5,15 +5,15 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "0",
+    "hash" : "4068647630",
     "id" : "69D0D225",
     "lastKnownWriteTime" : 1552321781,
     "last_content_update" : 1552321781,
     "path" : "~/Science/Manuscripts/Documentary analysis/documentary-paper/code/anomaly_detection_PE1.R",
     "project_path" : "code/anomaly_detection_PE1.R",
     "properties" : {
-        "cursorPosition" : "29,0",
-        "scrollLine" : "20"
+        "cursorPosition" : "38,12",
+        "scrollLine" : "29"
     },
     "relative_order" : 3,
     "source_on_save" : false,
