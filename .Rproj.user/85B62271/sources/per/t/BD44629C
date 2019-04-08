@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1554713866103.000,
+    "dirty" : true,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4068647630",
+    "id" : "BD44629C",
+    "lastKnownWriteTime" : 1554713827,
+    "last_content_update" : 1554714230097,
+    "path" : "~/Manuscripts/Documentary paper/documentary-paper/code/anomaly_detection_PE1.R",
+    "project_path" : "code/anomaly_detection_PE1.R",
+    "properties" : {
+        "cursorPosition" : "102,19",
+        "scrollLine" : "61"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
