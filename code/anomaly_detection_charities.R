@@ -22,10 +22,9 @@
 # episode 6 - 11 December 2016	2016-12-11
 #                               2016-12-12
 ###################################################################################
-library(data.table)
-library(plyr)
 library(AnomalyDetection)
 library(ggplot2)
+library(dplyr)
 # read in the data for the charity donations 
 bornFree<-read.csv("data/bornfree_donations.csv",header = T,sep = ",")
 arkive<-read.csv("data/arkive_donations.csv",header = T,sep = ",")
@@ -48,3 +47,31 @@ resarkive$plot
 resarkive$anoms
 resarkive$anoms$timestamp
 ggplot(arkive,aes(date,standardised_amount)) + geom_point() + xlab("Date") + ylab("Mean standardised donations") + theme_classic()
+
+
+# plot the data together 
+# set the times for Planet Earth 2 broadcast 
+rects <- data.frame(xstart = as.Date('2016-11-6 00:00:01'),
+                    xend = as.Date('2016-12-17 23:59:59'))
+
+# bind the donation data
+mydata <- dplyr::bind_rows(list(df1=arkive, df2=bornFree), .id = 'source')
+mydata$source <- as.factor(mydata$source)
+head(mydata)
+
+# change factor levels to names of charities
+levels(mydata$source)[levels(mydata$source)=="df1"] <- "Arkive"
+levels(mydata$source)[levels(mydata$source)=="df2"] <- "Born Free"
+
+# plot it
+mydata$date <- as.Date(mydata$date)
+mydata %>% 
+  ggplot() +
+  geom_rect(data = rects, aes(xmin = xstart, xmax = xend, ymin = -Inf, ymax = Inf),alpha = 0.1,fill="red") +
+  geom_point(mapping=aes(date, standardised_amount, color = standardised_amount > 5.9),stat="identity",size=1.2, position=position_jitter()) +
+  labs(x="Date",y= "Mean Standardised Donations") +
+  theme_bw() + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + facet_wrap(~ source,scales="free",ncol=2) +
+  theme(axis.title.x = element_text(size=15),
+        axis.title.y = element_text( size=15)) +
+  scale_x_date(date_breaks = "3 months",date_labels = ("%b %y")) + theme(legend.position = "none") + scale_color_manual(values=c("#000000", "#FF0000"))
+
