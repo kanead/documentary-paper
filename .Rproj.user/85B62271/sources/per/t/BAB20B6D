@@ -5,15 +5,15 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "3676356987",
+    "hash" : "1486144541",
     "id" : "BAB20B6D",
-    "lastKnownWriteTime" : 1554726656,
-    "last_content_update" : 1554726656812,
+    "lastKnownWriteTime" : 1554909310,
+    "last_content_update" : 1554909310842,
     "path" : "~/Manuscripts/Documentary paper/documentary-paper/code/regression_models.R",
     "project_path" : "code/regression_models.R",
     "properties" : {
-        "cursorPosition" : "155,0",
-        "scrollLine" : "112"
+        "cursorPosition" : "85,0",
+        "scrollLine" : "63"
     },
     "relative_order" : 6,
     "source_on_save" : false,

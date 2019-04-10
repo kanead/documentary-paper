@@ -11,7 +11,7 @@ library(readxl)
 library(modEvA)
 
 mydata<-read_excel("data/PE2_data.xlsx", sheet = "PE2 data")
-subData <- mydata[,c("Baseline","Number tweets","PE2 visits","Time on screen","Taxa","Status","Interaction","Diaries")]
+subData <- mydata[,c("PE2 name", "Baseline","Number tweets","PE2 visits","Time on screen","Taxa","Status","Interaction","Diaries")]
 
 head(subData)
 tail(subData)
@@ -19,6 +19,7 @@ tail(subData)
 # or day after broadcast minus the baseline value from mid 2015 to mid 2016
 
 # rename columns with spaces
+names(subData)[names(subData) == 'PE2 name'] <- 'species'
 names(subData)[names(subData) == 'Time on screen'] <- 'seconds'
 names(subData)[names(subData) == 'Number tweets'] <- 'tweet'
 names(subData)[names(subData) == 'PE2 visits'] <- 'diff'
@@ -28,8 +29,13 @@ head(subData)
 subData$tweet <- as.numeric(subData$tweet)
 subData$diff <- as.numeric(subData$diff)
 
-# Interaction should be a factor variable 
+# Interaction and Taxa should be factor variables
 subData$Interaction <- as.factor(subData$Interaction)
+subData$Taxa <- as.factor(subData$Taxa)
+
+# look at the taxonomic levels 
+levels(subData$Taxa)
+table(subData$Taxa)
 
 # replace the NAs in conservation Status with 0 
 subData$Status[is.na(subData$Status)] <- 0
@@ -103,7 +109,6 @@ modEvA::RsqGLM(model=mult.m.NB.wiki)
 tidy_mult.m.NB.wiki <- tidy(mult.m.NB.wiki)
 tidy_mult.m.NB.wiki
 kable(tidy_mult.m.NB.wiki)
-
 
 # compare the simple model with the more complex using AIC
 AIC(m.NB.wiki,mult.m.NB.wiki)
